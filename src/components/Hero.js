@@ -15,6 +15,9 @@ const Hero = () => (
       <p className="text-xs sm:text-sm lg:text-base uppercase tracking-wider text-gray-600 mb-6 sm:mb-8">
         Delicious meals, delivered fresh
       </p>
+      <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
+        Enter your phone number to browse our catalog and place your order
+      </p>
       <input
         type="text"
         placeholder="Enter Phone Number"
