@@ -6,19 +6,22 @@ const meals = [
     id: 1,
     name: "Vegetarian Thali",
     price: 10,
-    image: "https://via.placeholder.com/300",
+    image:
+      "https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=300&auto=format&fit=crop",
   },
   {
     id: 2,
     name: "Chicken Biryani",
     price: 12,
-    image: "https://via.placeholder.com/300",
+    image:
+      "https://images.unsplash.com/photo-1589302168068-37903e0ef661?q=80&w=300&auto=format&fit=crop",
   },
   {
     id: 3,
     name: "Paneer Tikka",
     price: 8,
-    image: "https://via.placeholder.com/300",
+    image:
+      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=300&auto=format&fit=crop",
   },
 ];
 
@@ -58,6 +61,7 @@ const Order = () => {
                   src={meal.image}
                   alt={meal.name}
                   className="w-full h-48 object-cover rounded-lg mb-4"
+                  loading="lazy" // Optimize image loading
                 />
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                   {meal.name}

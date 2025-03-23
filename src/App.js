@@ -34,16 +34,18 @@ const App = () => {
     <Router>
       <div>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/download" element={<Download />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <main className="pt-16 sm:pt-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/download" element={<Download />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/order" element={<Order />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>

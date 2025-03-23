@@ -14,8 +14,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white text-gray-800 p-4 shadow-md z-20">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
+    <nav className="fixed top-0 w-full bg-white text-gray-800 py-3 sm:py-4 shadow-md z-20">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 lg:px-8">
         <motion.span
           className="text-2xl sm:text-3xl font-bold text-red-600"
           initial={{ opacity: 0, y: -20 }}

@@ -4,17 +4,17 @@ const blogPosts = [
   {
     title: "The Art of Home-Cooked Meals",
     excerpt: "Discover the joy of traditional cooking with TiffinHub.",
-    image: "https://via.placeholder.com/400",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&auto=format&fit=crop",
   },
   {
     title: "Healthy Eating Made Easy",
     excerpt: "Learn how TiffinHub helps you eat better every day.",
-    image: "https://via.placeholder.com/400",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&auto=format&fit=crop",
   },
   {
     title: "Top 5 Tiffin Recipes",
     excerpt: "Explore our favorite recipes for a delicious meal.",
-    image: "https://via.placeholder.com/400",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&auto=format&fit=crop",
   },
 ];
 
@@ -44,17 +44,11 @@ const Blog = () => {
               src={post.image}
               alt={post.title}
               className="w-full h-48 object-cover rounded-lg mb-4"
+              loading="lazy"
             />
-            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
-              {post.title}
-            </h3>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">{post.title}</h3>
             <p className="text-sm sm:text-base text-gray-600">{post.excerpt}</p>
-            <a
-              href="#"
-              className="text-red-600 hover:underline mt-2 inline-block"
-            >
-              Read More
-            </a>
+            <a href="#" className="text-red-600 hover:underline mt-2 inline-block">Read More</a>
           </motion.div>
         ))}
       </div>

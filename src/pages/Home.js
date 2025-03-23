@@ -47,9 +47,8 @@ const Home = () => {
 
   return (
     <div className="relative">
-      {/* Canvas for particle animation */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <section className="min-h-screen bg-white flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="min-h-screen bg-white flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 relative z-10 pt-16 sm:pt-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
