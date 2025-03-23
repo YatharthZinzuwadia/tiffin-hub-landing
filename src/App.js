@@ -17,9 +17,11 @@ const App = () => {
     <div>
       <Navbar />
       <Hero />
-      <section className="py-16 bg-white text-center" id="services">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8">Our Services</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <section className="py-12 sm:py-16 bg-white text-center" id="services">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8">
+          Our Services
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
