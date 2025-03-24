@@ -6,7 +6,7 @@ const servicesData = [
     title: "Daily Meal Delivery",
     description:
       "Fresh, home-cooked meals delivered to your doorstep every day.",
-    icon: "🍽️",
+    icon: "🍽",
   },
   {
     title: "Customizable Menus",

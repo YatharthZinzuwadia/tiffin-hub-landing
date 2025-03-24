@@ -19,7 +19,7 @@ const Register = () => {
   const stepsConfig = [
     { title: "Enter Phone Number", field: "phone" },
     { title: "Verify OTP", field: "otp" },
-    { title: "Add Details", field: "name" }, // Using name as primary field
+    { title: "Add Details", field: "name" },
     { title: "Choose Locality", field: "locality" },
   ];
 
@@ -32,19 +32,20 @@ const Register = () => {
         transition={{ duration: 0.8 }}
       >
         {/* Steps Navigation */}
-        <div className="flex justify-between mb-8">
+        <div className="flex flex-col sm:flex-row justify-between mb-8 gap-4">
           {stepsConfig.map((stepConfig, index) => (
             <motion.div
               key={index}
-              className={`flex-1 text-center p-2 rounded-lg ${
+              className={`flex-1 text-center p-3 rounded-lg ${
                 index + 1 === step
                   ? "bg-red-600 text-white"
                   : index + 1 < step
                   ? "bg-green-500 text-white"
-                  : "bg-gray-200 text-gray-500 opacity-50 cursor-not-allowed"
+                  : "bg-gray-200 text-gray-500 opacity-50"
               }`}
-              initial={{ scale: 0.9 }}
-              animate={{ scale: index + 1 <= step ? 1 : 0.9 }}
+              initial={{ rotateX: 90 }}
+              animate={{ rotateX: index + 1 <= step ? 0 : 90 }}
+              transition={{ duration: 0.5 }}
             >
               {stepConfig.title}
             </motion.div>
@@ -56,14 +57,18 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-center">
+              Step 1: Enter Phone Number
+            </h2>
             <input
               type="text"
               name="phone"
               placeholder="Phone Number"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
             />
             <button
               onClick={handleNext}
@@ -77,14 +82,18 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-center">
+              Step 2: Verify OTP
+            </h2>
             <input
               type="text"
               name="otp"
               placeholder="Enter OTP"
               value={formData.otp}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
             />
             <button
               onClick={handleNext}
@@ -98,14 +107,18 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-center">
+              Step 3: Add Details
+            </h2>
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
             />
             <input
               type="text"
@@ -113,7 +126,7 @@ const Register = () => {
               placeholder="Your Address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
             />
             <button
               onClick={handleNext}
@@ -127,14 +140,18 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-center">
+              Step 4: Choose Locality
+            </h2>
             <input
               type="text"
               name="locality"
               placeholder="Your Locality"
               value={formData.locality}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+              className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
             />
             <button
               onClick={() => alert("Registration Complete!")}

@@ -43,18 +43,18 @@ const Order = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-8 sm:mb-10 text-center">
             Select Your Meal
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {meals.map((meal) => (
               <motion.div
                 key={meal.id}
-                className="p-4 sm:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer"
+                className="p-4 sm:p-6 bg-white rounded-lg shadow-md border border-gray-200 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
                 onClick={() => handleSelectMeal(meal)}
               >
                 <img
@@ -63,7 +63,7 @@ const Order = () => {
                   className="w-full h-48 object-cover rounded-lg mb-4"
                   loading="lazy"
                 />
-                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">
                   {meal.name}
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600">
@@ -81,11 +81,11 @@ const Order = () => {
           transition={{ duration: 0.8 }}
           className="max-w-md mx-auto"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8 text-center">
             Confirm Your Order
           </h2>
           <div className="p-4 bg-gray-100 rounded-lg mb-4">
-            <h3 className="text-lg font-semibold text-gray-800">
+            <h3 className="text-lg font-bold text-gray-800">
               {selectedMeal.name}
             </h3>
             <p className="text-gray-600">${selectedMeal.price}</p>
@@ -93,7 +93,7 @@ const Order = () => {
           <input
             type="text"
             placeholder="Delivery Address"
-            className="w-full p-3 border border-gray-300 rounded-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+            className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
           />
           <button
             onClick={handleNext}
@@ -110,7 +110,7 @@ const Order = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
             Order Confirmed!
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mb-6">

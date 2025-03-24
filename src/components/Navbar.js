@@ -84,27 +84,29 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white text-gray-800 py-3 sm:py-4 shadow-md z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
         <motion.span
-          className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600"
+          className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-red-600"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          whileHover={{ scale: 1.05 }}
         >
           TiffinHub
         </motion.span>
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-4 lg:gap-6">
           {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`text-gray-600 hover:text-red-600 text-sm lg:text-base transition-colors ${
-                location.pathname === link.to
-                  ? "text-red-600 font-semibold"
-                  : ""
-              }`}
-            >
-              {link.label}
-            </Link>
+            <motion.div key={link.to} whileHover={{ scale: 1.1 }}>
+              <Link
+                to={link.to}
+                className={`text-gray-600 hover:text-red-600 text-sm lg:text-base transition-colors cursor-pointer ${
+                  location.pathname === link.to
+                    ? "text-red-600 font-semibold"
+                    : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            </motion.div>
           ))}
           <Link
             to="/register"
@@ -184,7 +186,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.to}
-                    className={`text-gray-600 hover:text-red-600 text-2xl sm:text-3xl font-medium transition-colors ${
+                    className={`text-gray-600 hover:text-red-600 text-2xl sm:text-3xl font-medium transition-colors cursor-pointer ${
                       location.pathname === link.to
                         ? "text-red-600 font-semibold"
                         : ""
@@ -214,6 +216,13 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <style jsx>{`
+        .cursor-pointer:hover {
+          cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='20' cy='20' r='10' fill='rgba(239, 68, 68, 0.5)'/></svg>")
+              20 20,
+            auto;
+        }
+      `}</style>
     </nav>
   );
 };

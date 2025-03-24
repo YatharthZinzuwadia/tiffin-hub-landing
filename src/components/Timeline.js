@@ -91,11 +91,11 @@ const Timeline = () => {
           <div
             key={index}
             ref={(el) => (stepsRef.current[index] = el)}
-            className={`flex flex-col sm:flex-row items-center mb-8 sm:mb-12 ${
-              index % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
+            className={`flex items-center mb-12 ${
+              index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             }`}
           >
-            <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
+            <div className="w-1/2 px-4">
               <div className="p-4 bg-gray-100 rounded-lg shadow-md">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                   {step.title}
@@ -105,7 +105,7 @@ const Timeline = () => {
                 </p>
               </div>
             </div>
-            <div className="w-full sm:w-1/2 flex justify-center">
+            <div className="w-1/2 flex justify-center">
               <div className="icon w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl">
                 {step.icon}
               </div>

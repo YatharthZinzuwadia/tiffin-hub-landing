@@ -34,16 +34,16 @@ const App = () => {
     <Router>
       <div className="w-full min-h-screen">
         <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/download" element={<Download />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/download" element={<Download />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
         <Footer />
       </div>
     </Router>
