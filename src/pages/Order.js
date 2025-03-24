@@ -36,7 +36,7 @@ const Order = () => {
   };
 
   return (
-    <section className="min-h-screen bg-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white py-18 sm:py-20 px-4 sm:px-6 lg:px-8">
       {step === 1 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -61,7 +61,7 @@ const Order = () => {
                   src={meal.image}
                   alt={meal.name}
                   className="w-full h-48 object-cover rounded-lg mb-4"
-                  loading="lazy" // Optimize image loading
+                  loading="lazy"
                 />
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                   {meal.name}

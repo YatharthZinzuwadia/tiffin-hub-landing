@@ -40,7 +40,7 @@ const servicesData = [
 const Services = () => {
   return (
     <div>
-      <section className="py-12 sm:py-16 bg-white text-center">
+      <section className="py-18 sm:py-20 bg-white text-center">
         <motion.h2
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 50 }}

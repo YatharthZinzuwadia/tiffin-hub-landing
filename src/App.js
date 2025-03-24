@@ -34,7 +34,6 @@ const App = () => {
     <Router>
       <div className="w-full min-h-screen">
         <Navbar />
-        <main className="w-full pt-16 sm:pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
@@ -45,7 +44,6 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Routes>
-        </main>
         <Footer />
       </div>
     </Router>

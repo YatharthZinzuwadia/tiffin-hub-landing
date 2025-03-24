@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -27,88 +26,17 @@ const blogPosts = [
 ];
 
 const Blog = () => {
-  const canvasRef = useRef(null);
   const cardsRef = useRef([]);
 
   useEffect(() => {
-    // Three.js Particle Background
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvasRef.current,
-      alpha: true,
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    const particleCount = 300;
-    const particles = new THREE.Group();
-    for (let i = 0; i < particleCount; i++) {
-      const geometry = new THREE.SphereGeometry(0.05, 16, 16);
-      const material = new THREE.MeshBasicMaterial({ color: 0xef4444 });
-      const particle = new THREE.Mesh(geometry, material);
-      particle.position.set(
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 20
-      );
-      particle.userData = {
-        speedX: (Math.random() - 0.5) * 0.02,
-        speedY: (Math.random() - 0.5) * 0.02,
-        speedZ: (Math.random() - 0.5) * 0.02,
-      };
-      particles.add(particle);
-    }
-    scene.add(particles);
-
-    camera.position.z = 5;
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      particles.children.forEach((particle) => {
-        particle.position.x += particle.userData.speedX;
-        particle.position.y += particle.userData.speedY;
-        particle.position.z += particle.userData.speedZ;
-
-        if (particle.position.x > 10 || particle.position.x < -10)
-          particle.userData.speedX *= -1;
-        if (particle.position.y > 10 || particle.position.y < -10)
-          particle.userData.speedY *= -1;
-        if (particle.position.z > 10 || particle.position.z < -10)
-          particle.userData.speedZ *= -1;
-      });
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    // Parallax and Scroll Animations
     cardsRef.current.forEach((card) => {
-      const image = card.querySelector("img");
-      gsap.fromTo(
-        image,
-        { y: -50 },
-        {
-          y: 50,
-          ease: "none",
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }
-      );
-
       gsap.fromTo(
         card,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 50, scale: 0.9 },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
@@ -123,9 +51,8 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="relative w-full">
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <section className="relative z-10 py-12 sm:py-16 bg-transparent min-h-screen">
+    <div className="w-full">
+      <section className="py-18 sm:py-20 bg-white min-h-screen">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8 text-center">
           Blog
         </h2>
