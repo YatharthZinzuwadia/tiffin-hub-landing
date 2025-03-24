@@ -52,7 +52,7 @@ const Blog = () => {
 
   return (
     <div className="w-full">
-      <section className="py-18 sm:py-20 bg-white min-h-screen">
+      <section className="pt-24 sm:pt-28 lg:pt-32 pb-18 sm:pb-20 bg-white min-h-screen">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8 text-center">
           Blog
         </h2>

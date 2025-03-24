@@ -81,7 +81,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-white text-gray-800 py-3 sm:py-4 shadow-md z-20">
+    <nav className="fixed top-0 w-full bg-white text-gray-800 py-3 sm:py-4 shadow-md z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
         <motion.span
           className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600"

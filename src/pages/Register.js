@@ -16,23 +16,47 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const stepsConfig = [
+    { title: "Enter Phone Number", field: "phone" },
+    { title: "Verify OTP", field: "otp" },
+    { title: "Add Details", field: "name" }, // Using name as primary field
+    { title: "Choose Locality", field: "locality" },
+  ];
+
   return (
-    <section className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
       <motion.div
         className="w-full max-w-md sm:max-w-lg"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Steps Navigation */}
+        <div className="flex justify-between mb-8">
+          {stepsConfig.map((stepConfig, index) => (
+            <motion.div
+              key={index}
+              className={`flex-1 text-center p-2 rounded-lg ${
+                index + 1 === step
+                  ? "bg-red-600 text-white"
+                  : index + 1 < step
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-200 text-gray-500 opacity-50 cursor-not-allowed"
+              }`}
+              initial={{ scale: 0.9 }}
+              animate={{ scale: index + 1 <= step ? 1 : 0.9 }}
+            >
+              {stepConfig.title}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Step Content */}
         {step === 1 && (
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
-              Step 1: Enter Phone Number
-            </h2>
             <input
               type="text"
               name="phone"
@@ -53,11 +77,7 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
-              Step 2: Verify OTP
-            </h2>
             <input
               type="text"
               name="otp"
@@ -78,11 +98,7 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
-              Step 3: Add Details
-            </h2>
             <input
               type="text"
               name="name"
@@ -111,11 +127,7 @@ const Register = () => {
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
-              Step 4: Choose Locality
-            </h2>
             <input
               type="text"
               name="locality"

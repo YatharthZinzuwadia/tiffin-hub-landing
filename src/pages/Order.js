@@ -14,7 +14,7 @@ const meals = [
     name: "Chicken Biryani",
     price: 12,
     image:
-      "https://images.unsplash.com/photo-1589302168068-37903e0ef661?q=80&w=300&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=2088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const Order = () => {
   };
 
   return (
-    <section className="min-h-screen bg-white py-18 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white pt-24 sm:pt-28 lg:pt-32 px-4 sm:px-6 lg:px-8">
       {step === 1 && (
         <motion.div
           initial={{ opacity: 0 }}
