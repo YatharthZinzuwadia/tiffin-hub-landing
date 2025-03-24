@@ -5,3 +5,7 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+[data-animated] {
+  will-change: transform, opacity;
+}

@@ -1,4 +1,8 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const timelineSteps = [
   {
@@ -34,6 +38,48 @@ const timelineSteps = [
 ];
 
 const Timeline = () => {
+  const stepsRef = useRef([]);
+
+  useEffect(() => {
+    stepsRef.current.forEach((step, index) => {
+      const isLeft = index % 2 === 0;
+      gsap.fromTo(
+        step,
+        { x: isLeft ? -100 : 100, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: step,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1,
+          },
+        }
+      );
+
+      const icon = step.querySelector(".icon");
+      gsap.fromTo(
+        icon,
+        { scale: 0, rotation: 0 },
+        {
+          scale: 1,
+          rotation: 360,
+          duration: 1,
+          ease: "elastic.out(1, 0.3)",
+          scrollTrigger: {
+            trigger: step,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1,
+          },
+        }
+      );
+    });
+  }, []);
+
   return (
     <div className="py-12 sm:py-16 bg-white">
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-12 text-center">
@@ -42,40 +88,29 @@ const Timeline = () => {
       <div className="relative max-w-3xl mx-auto">
         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-red-600"></div>
         {timelineSteps.map((step, index) => (
-          <motion.div
+          <div
             key={index}
+            ref={(el) => (stepsRef.current[index] = el)}
             className={`flex items-center mb-12 ${
               index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             }`}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             <div className="w-1/2 px-4">
-              <motion.div
-                className="p-4 bg-gray-100 rounded-lg shadow-md"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
+              <div className="p-4 bg-gray-100 rounded-lg shadow-md">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                   {step.title}
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600">
                   {step.description}
                 </p>
-              </motion.div>
+              </div>
             </div>
             <div className="w-1/2 flex justify-center">
-              <motion.div
-                className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
+              <div className="icon w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl">
                 {step.icon}
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

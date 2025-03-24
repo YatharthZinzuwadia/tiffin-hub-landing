@@ -32,9 +32,9 @@ const App = () => {
 
   return (
     <Router>
-      <div>
+      <div className="w-full min-h-screen">
         <Navbar />
-        <main className="pt-16 sm:pt-20">
+        <main className="w-full pt-16 sm:pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
