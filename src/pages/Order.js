@@ -28,11 +28,41 @@ const meals = [
 const Order = () => {
   const [step, setStep] = useState(1);
   const [selectedMeal, setSelectedMeal] = useState(null);
+  const [address, setAddress] = useState("");
+  const [addressError, setAddressError] = useState("");
 
-  const handleNext = () => setStep(step + 1);
+  const handleNext = () => {
+    if (step === 2) {
+      if (validateAddress()) {
+        setStep(step + 1);
+      }
+    } else {
+      setStep(step + 1);
+    }
+  };
+
   const handleSelectMeal = (meal) => {
     setSelectedMeal(meal);
     handleNext();
+  };
+
+  const validateAddress = () => {
+    if (address.trim().length < 5) {
+      setAddressError("Address must be at least 5 characters long");
+      return false;
+    }
+    setAddressError("");
+    return true;
+  };
+
+  const inputVariants = {
+    focus: {
+      scale: 1.05,
+      borderColor: "#ef4444",
+      transition: { duration: 0.3 },
+    },
+    blur: { scale: 1, borderColor: "#d1d5db", transition: { duration: 0.3 } },
+    invalid: { x: [0, -10, 10, -10, 0], transition: { duration: 0.5 } },
   };
 
   return (
@@ -90,17 +120,41 @@ const Order = () => {
             </h3>
             <p className="text-gray-600">${selectedMeal.price}</p>
           </div>
-          <input
+          <motion.input
             type="text"
             placeholder="Delivery Address"
-            className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            onBlur={validateAddress}
+            className="w-full p-3 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-2"
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+            animate={addressError ? "invalid" : "blur"}
+            variants={inputVariants}
+            whileFocus="focus"
           />
-          <button
-            onClick={handleNext}
+          {addressError && (
+            <motion.p
+              className="text-red-600 text-xs sm:text-sm mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              {addressError}
+            </motion.p>
+          )}
+          <motion.button
             className="w-full py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors"
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+            onClick={handleNext}
           >
             Place Order
-          </button>
+          </motion.button>
         </motion.div>
       )}
       {step === 3 && (
@@ -116,12 +170,16 @@ const Order = () => {
           <p className="text-sm sm:text-base text-gray-600 mb-6">
             Your {selectedMeal.name} will be delivered soon.
           </p>
-          <button
-            onClick={() => setStep(1)}
+          <motion.button
             className="py-3 px-6 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors"
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+            onClick={() => setStep(1)}
           >
             Order Again
-          </button>
+          </motion.button>
         </motion.div>
       )}
     </section>

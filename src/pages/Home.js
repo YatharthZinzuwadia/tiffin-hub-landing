@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 const Home = () => {
   const canvasRef = useRef(null);
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -40,6 +42,32 @@ const Home = () => {
     return () => renderer.dispose();
   }, []);
 
+  const validatePhone = () => {
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone)) {
+      setPhoneError("Please enter a valid 10-digit phone number");
+      return false;
+    }
+    setPhoneError("");
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (validatePhone()) {
+      alert("Phone number submitted: " + phone);
+    }
+  };
+
+  const inputVariants = {
+    focus: {
+      scale: 1.05,
+      borderColor: "#ef4444",
+      transition: { duration: 0.3 },
+    },
+    blur: { scale: 1, borderColor: "#d1d5db", transition: { duration: 0.3 } },
+    invalid: { x: [0, -10, 10, -10, 0], transition: { duration: 0.5 } },
+  };
+
   return (
     <div className="relative">
       <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-20" />
@@ -69,16 +97,38 @@ const Home = () => {
           <motion.input
             type="text"
             placeholder="Enter Phone Number"
-            className="w-full p-3 sm:p-4 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-4 text-sm sm:text-base"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+            onBlur={validatePhone}
+            className="w-full p-3 sm:p-4 border border-gray-300 rounded-full text-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-red-600 mb-2 text-sm sm:text-base"
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+            animate={phoneError ? "invalid" : "blur"}
+            variants={inputVariants}
+            whileFocus="focus"
           />
+          {phoneError && (
+            <motion.p
+              className="text-red-600 text-xs sm:text-sm mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              {phoneError}
+            </motion.p>
+          )}
           <motion.button
             className="w-full py-3 sm:py-4 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors text-sm sm:text-base"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.8 }}
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+            onClick={handleSubmit}
           >
             Get Started
           </motion.button>
