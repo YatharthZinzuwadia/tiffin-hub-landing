@@ -98,7 +98,7 @@ const Navbar = () => {
             <motion.div key={link.to} whileHover={{ scale: 1.1 }}>
               <Link
                 to={link.to}
-                className={`text-gray-600 hover:text-red-600 text-sm lg:text-base transition-colors cursor-pointer ${
+                className={`text-gray-600 hover:text-red-600 text-sm lg:text-base transition-colors ${
                   location.pathname === link.to
                     ? "text-red-600 font-semibold"
                     : ""
@@ -186,7 +186,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.to}
-                    className={`text-gray-600 hover:text-red-600 text-2xl sm:text-3xl font-medium transition-colors cursor-pointer ${
+                    className={`text-gray-600 hover:text-red-600 text-2xl sm:text-3xl font-medium transition-colors ${
                       location.pathname === link.to
                         ? "text-red-600 font-semibold"
                         : ""
@@ -216,13 +216,6 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <style jsx>{`
-        .cursor-pointer:hover {
-          cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='20' cy='20' r='10' fill='rgba(239, 68, 68, 0.5)'/></svg>")
-              20 20,
-            auto;
-        }
-      `}</style>
     </nav>
   );
 };
