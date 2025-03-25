@@ -1,26 +1,19 @@
-import { useSpring, animated } from "@react-spring/web";
+import { motion } from "framer-motion";
 
 const ServiceCard = ({ title, description }) => {
-  const [props, api] = useSpring(() => ({
-    from: { scale: 1 },
-    config: { tension: 280, friction: 60 },
-  }));
-
-  const handleHover = () => api.start({ scale: 1.05 });
-  const handleLeave = () => api.start({ scale: 1 });
-
   return (
-    <animated.div
+    <motion.div
       className="p-4 sm:p-6 bg-white rounded-lg shadow-md border border-gray-200"
-      style={props}
-      onMouseEnter={handleHover}
-      onMouseLeave={handleLeave}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      whileHover={{ scale: 1.05 }}
     >
-      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+      <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">
         {title}
       </h3>
       <p className="text-sm sm:text-base text-gray-600">{description}</p>
-    </animated.div>
+    </motion.div>
   );
 };
 
