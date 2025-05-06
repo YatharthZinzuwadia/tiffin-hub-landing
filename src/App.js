@@ -1,38 +1,52 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import ServiceCard from "./components/ServiceCard";
-import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Services from "./pages/Services";
+import Download from "./pages/Download";
+import ContactUs from "./pages/ContactUs";
+import Order from "./pages/Order";
+import Blog from "./pages/Blog";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const App = () => {
-  const services = [
-    {
-      title: "Daily Delivery",
-      description: "Fresh meals delivered every day.",
-    },
-    { title: "Custom Menus", description: "Choose your favorite dishes." },
-    { title: "Affordable Plans", description: "Starting at just $10/month." },
-  ];
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+    });
+
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, []);
 
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <section className="py-12 sm:py-16 bg-white text-center" id="services">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8">
-          Our Services
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.title}
-              description={service.description}
-            />
-          ))}
-        </div>
-      </section>
-      <Testimonials />
-    </div>
+    <Router>
+      <div className="w-full min-h-screen">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/download" element={<Download />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

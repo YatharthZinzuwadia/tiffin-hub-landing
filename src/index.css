@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='20' cy='20' r='10' fill='rgba(250, 40, 40, 0.7)'/></svg>") 20 20, auto;
+}
+
+[data-animated] {
+  will-change: transform, opacity;
+}
